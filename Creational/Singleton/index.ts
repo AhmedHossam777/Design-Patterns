@@ -1,31 +1,24 @@
-class Singleton {
-	private static instance: Singleton;
+// Singleton Logger Class
+// log method
+// Can have multiple methods
+
+class Logger {
+	private static instance: Logger;
 
 	private constructor() {}
 
-	private static _value: number;
-
-	get value(): number {
-		return Singleton._value;
-	}
-
-	set value(value: number) {
-		Singleton._value = value;
-	}
-
-	public static getInstance(): Singleton {
-		if (!Singleton.instance) {
-			Singleton.instance = new Singleton();
+	public static getInstance(): Logger {
+		if (!Logger.instance) {
+			Logger.instance = new Logger();
 		}
-		return this.instance;
+		return Logger.instance;
+	}
+
+	public log(message: string) {
+		console.log(message);
 	}
 }
 
-const instance1 = Singleton.getInstance();
-const instance2 = Singleton.getInstance();
+const logger = Logger.getInstance();
 
-instance1.value = 10;
-
-console.log(instance1.value); // 10
-console.log(instance2.value); // 10
-console.log(instance1 === instance2); // true
+logger.log('hello, world');
