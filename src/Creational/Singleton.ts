@@ -1,14 +1,14 @@
 class Singleton {
-	static instance: Singleton;
+	static #instance: Singleton;
 
 	private constructor() {}
 
-	public static get getInstance(): Singleton {
-		if (!Singleton.instance) {
-			Singleton.instance = new Singleton();
+	public static get instance(): Singleton {
+		if (!Singleton.#instance) {
+			Singleton.#instance = new Singleton();
 		}
 
-		return Singleton.instance;
+		return Singleton.#instance;
 	}
 
 	public someBusinessLogic() {
@@ -16,7 +16,7 @@ class Singleton {
 	}
 }
 
-function clientCode() {
+const clientCode = () => {
 	const s1 = Singleton.instance;
 	const s2 = Singleton.instance;
 
@@ -25,6 +25,6 @@ function clientCode() {
 	} else {
 		console.log('Singleton failed, variables contain different instances.');
 	}
-}
+};
 
 clientCode();
